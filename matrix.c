@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 11:08:53 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 13:49:00 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*buffer_map(char *buff)
 	return (buff);
 }
 
-t_dot	**free_matrix(t_dot **matrix, int i)
+static t_dot	**free_matrix(t_dot **matrix, int i)
 {
 	while(i)
 	{
@@ -43,7 +43,7 @@ t_dot	**free_matrix(t_dot **matrix, int i)
 	return (matrix);
 }
 
-static t_dot	**create_matrix(int w, int h, char **tab)
+static t_dot	**create_matrix(int h, int w, char **tab)
 {
 	int		i;
 	int		j;
@@ -60,12 +60,13 @@ static t_dot	**create_matrix(int w, int h, char **tab)
 		matrix[i] = malloc(sizeof(t_dot) * w);
 		if (!matrix[i])
 			return(free_matrix(matrix, i));
-		line = ft_split(tab[i], ' ', &w);
+		line = ft_split(tab[i], ' ');
 		while (j < w)
 		{
 			matrix[i][j].x = i;
 			matrix[i][j].y = j;
 			matrix[i][j].z = ft_atoi(line[j]);
+			//printf("x = %d | y = %d\n", matrix[i][j].x, matrix[i][j].y);
 			free(line[j]);
 			j++;
 		}
@@ -75,22 +76,19 @@ static t_dot	**create_matrix(int w, int h, char **tab)
 	return (matrix);
 }
 
-t_dot **get_matrix()
+t_dot **get_matrix(t_dot **mtx, int h, int w)
 {
-    int     x;
-    int     y;
 	char	*buff;
 	char	**map;
-    t_dot	**matrix;
-	
-    x = 0;
+
 	buff = malloc(sizeof(char) * 1);
 	if (!buff)
 		return (0);
 	buff[0] = '\0';
 	buff = buffer_map(buff);
-	map = ft_split(buff, '\n', &y);
+	map = ft_split(buff, '\n');
 	free(buff);
-    matrix = create_matrix(x, y, map);
-	return (matrix);
+    mtx = create_matrix(h, w, map);
+	//printf("x = %d | y = %d\n", mtx[5][5].x, mtx[5][5].y);
+	return (mtx);
 }

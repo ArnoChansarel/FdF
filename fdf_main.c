@@ -6,13 +6,13 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 11:11:57 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 13:50:27 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-
+/*
 int	scale(t_dot **ele)
 {
 	int i;
@@ -31,20 +31,17 @@ int	scale(t_dot **ele)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 
 /*-------------------------------------------------------*/
 
 int main(void)
 {
-	t_data  set;
-	t_dot	**matrix;
+	//t_data 		set;
+	t_matrix	matrix;
 	
-	
-	
-	
-	set.mlx = mlx_init();
+	/*set.mlx = mlx_init();
 	if(!set.mlx)
 		return (1);
 	set.win = mlx_new_window(set.mlx, WIDTH, HEIGHT, "FdF");
@@ -52,10 +49,13 @@ int main(void)
 		return (1);
 	set.img.img = mlx_new_image(set.mlx, WIDTH, HEIGHT);
 	set.img.addr = mlx_get_data_addr(set.img.img, &set.img.bpp, &set.img.szline, &set.img.endian);
-	
-	matrix = get_matrix();
-	scale(matrix);
-	int i = 0;
+	*/
+	get_dimensions(&matrix);
+	matrix.mtx = get_matrix(matrix.mtx, matrix.h, matrix.w);
+	printf("x = %d | y = %d\n", matrix.mtx[8][12].z, matrix.mtx[8][12].z);
+	//scale(matrix.mtx);
+	//printf("x = %d | y = %d\n", matrix.mtx[5][5].x, matrix.mtx[5][5].y);
+	/*int i = 0;
 	int j;
 	while (i < 5)
 	{
@@ -64,14 +64,14 @@ int main(void)
 		{
 			//scale(&matrix[i+1][j]);
 			//img_pix_put(&set.img, matrix[i][j].x, matrix[i][j].y, 0xFFFFFF);
-			drawline(&set.img, matrix[i][j].x, matrix[i][j].y, matrix[i][j+1].x, matrix[i][j+1].y, 0xFFFFFF);
+			//drawline(&set.img, matrix.mtx[i][j].x, matrix.mtx[i][j].y, matrix.mtx[i][j+1].x, matrix.mtx[i][j+1].y, 0xFFFFFF);
 			//printf("x0 = %d | y0 = %d | x1 = %d | y1 = %d\n", matrix[i][j].x, matrix[i][j].y, matrix[i+1][j].x, matrix[i+1][j].y);
-			drawline(&set.img, matrix[i][j].x, matrix[i][j].y, matrix[i+1][j].x, matrix[i+1][j].y, 0xFFFFFF);
+			//drawline(&set.img, matrix[i][j].x, matrix[i][j].y, matrix[i+1][j].x, matrix[i+1][j].y, 0xFFFFFF);
 			//printf("x = %d | y = %d\n", matrix[i][j].x, matrix[i][j].y);
 			j++;
 		}
 		i++;
-	}
+	}*/
 
 	/*
 	** . Visiblement l'idee du scale focntionne mais les valeurs ne sont vraiment pas bonnes.
@@ -80,13 +80,13 @@ int main(void)
 
 	//drawline(&set.img, 50, 50, 1000, 1000, 0xFFFFFF);
 	
-	mlx_put_image_to_window(set.mlx, set.win, set.img.img, 0, 0);
+	/*mlx_put_image_to_window(set.mlx, set.win, set.img.img, 0, 0);
 
 
 	mlx_key_hook(set.win, &destroy, &set);
 	mlx_loop(set.mlx);
 
 	
-	free(set.mlx);
+	free(set.mlx);*/
 	return (0);
 }
