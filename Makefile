@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/11/25 14:09:42 by achansar         ###   ########.fr        #
+#    Updated: 2022/11/26 18:14:33 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = fdf
 
 
-SRC = fdf_main
+SRC = fdf_main draw key matrix
 C_FILES = $(SRC:=.c)
 OBJ = $(SRC:=.o)
 CC = cc

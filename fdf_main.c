@@ -6,64 +6,87 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/25 16:31:29 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 11:11:57 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "FdF.h"
 
-char **get_map(int fd, char **map)
-{
-	int     x, y;
-	char    *line;
 
-	/* 1/ On recupere une ligne
-		2/ on modifie split pour recuperer la length via un pointeur
-		3/ on split par les " "
-		4/ on recupere chaque suite d'elements dans un tableau de char.
-		5/ on a donc chque valeur dans le bon ordre
-	*/
-	x = 0;
-	y = 0;
-	while (y + 1 < 12)
+int	scale(t_dot **ele)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < 11)
 	{
-		line = get_next_line(fd);
-		map[y] = ft_split(line, ' ');
-		free(line);
-		//printf("%s", map[y]);
-		y++;
+		j = 0;
+		while (j < 11)
+		{
+			ele[i][j].x *= 10;
+			ele[i][j].y *= 10;
+			j++;
+		}
+		i++;
 	}
-	return (map);
-}
-
-int ft_fdf()
-{
-	char    *map[12];
-	int fd = open("test_maps/42.fdf", O_RDONLY);
-
-	get_map(fd, map);
-	close(fd);
 	return (0);
 }
+
 
 /*-------------------------------------------------------*/
 
 int main(void)
 {
-	//t_data  set;
+	t_data  set;
+	t_dot	**matrix;
 	
-	//set.mlx = mlx_init();
-	//set.win = mlx_new_window(set.mlx, 1920, 1080, "Mon bon test");
 	
-	ft_fdf();
-	//drawline(set, 500, 500, 1000, 1000, 0x00FFFFFF);
-	//drawline(set, 500, 500, 1000, 500, 0x00FFFFFF);
-	//drawline(set, 500, 500, 500, 900, 0x00FFFFFF);
+	
+	
+	set.mlx = mlx_init();
+	if(!set.mlx)
+		return (1);
+	set.win = mlx_new_window(set.mlx, WIDTH, HEIGHT, "FdF");
+	if(!set.win)
+		return (1);
+	set.img.img = mlx_new_image(set.mlx, WIDTH, HEIGHT);
+	set.img.addr = mlx_get_data_addr(set.img.img, &set.img.bpp, &set.img.szline, &set.img.endian);
+	
+	matrix = get_matrix();
+	scale(matrix);
+	int i = 0;
+	int j;
+	while (i < 5)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			//scale(&matrix[i+1][j]);
+			//img_pix_put(&set.img, matrix[i][j].x, matrix[i][j].y, 0xFFFFFF);
+			drawline(&set.img, matrix[i][j].x, matrix[i][j].y, matrix[i][j+1].x, matrix[i][j+1].y, 0xFFFFFF);
+			//printf("x0 = %d | y0 = %d | x1 = %d | y1 = %d\n", matrix[i][j].x, matrix[i][j].y, matrix[i+1][j].x, matrix[i+1][j].y);
+			drawline(&set.img, matrix[i][j].x, matrix[i][j].y, matrix[i+1][j].x, matrix[i+1][j].y, 0xFFFFFF);
+			//printf("x = %d | y = %d\n", matrix[i][j].x, matrix[i][j].y);
+			j++;
+		}
+		i++;
+	}
 
-	//mlx_loop(set.mlx);
-	//mlx_destroy_image(mlx, image.img);
-	//mlx_destroy_window(set.mlx, set.win);
+	/*
+	** . Visiblement l'idee du scale focntionne mais les valeurs ne sont vraiment pas bonnes.
+	**   il n'y a qu'a relancer la compil demain matin pour se remettre dedans.
+	*/
 
+	//drawline(&set.img, 50, 50, 1000, 1000, 0xFFFFFF);
+	
+	mlx_put_image_to_window(set.mlx, set.win, set.img.img, 0, 0);
+
+
+	mlx_key_hook(set.win, &destroy, &set);
+	mlx_loop(set.mlx);
+
+	
+	free(set.mlx);
 	return (0);
 }
