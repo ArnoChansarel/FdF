@@ -6,11 +6,24 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 14:56:16 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 18:03:52 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+static t_dot	**free_matrix(t_dot **matrix, int i)
+{
+	while(i)
+	{
+		free(matrix[i]);
+		i--;
+	}
+	free(matrix);
+	matrix = NULL;
+	return (matrix);
+}
+
 
 int	scale(t_matrix *ele)
 {
@@ -23,8 +36,8 @@ int	scale(t_matrix *ele)
 		j = 0;
 		while (j < ele->w)
 		{
-			ele->mtx[i][j].x *= 50;
-			ele->mtx[i][j].y *= 50;
+			ele->mtx[i][j].x = ele->mtx[i][j].x * 50 + 400;
+			ele->mtx[i][j].y = ele->mtx[i][j].y * 50 + 300;
 			j++;
 		}
 		i++;
@@ -49,18 +62,6 @@ static char	*buffer_map(char *buff)
 	}
 	close(fd);
 	return (buff);
-}
-
-static t_dot	**free_matrix(t_dot **matrix, int i)
-{
-	while(i)
-	{
-		free(matrix[i]);
-		i--;
-	}
-	free(matrix);
-	matrix = NULL;
-	return (matrix);
 }
 
 static t_dot	**create_matrix(int h, int w, char **tab)
@@ -90,7 +91,6 @@ static t_dot	**create_matrix(int h, int w, char **tab)
 			free(line[j]);
 			j++;
 		}
-		printf("ligne %d\n", i);
 		i++;
 	}
 	free(line);

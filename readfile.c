@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 14:32:11 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:29:49 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int get_dimensions(t_matrix *matrix)
 {
     matrix->h = get_height(matrix->h);
     matrix->w = get_width(matrix->w);
-    printf("w = %d | h = %d\n", matrix->w, matrix->h);
+    //printf("w = %d | h = %d\n", matrix->w, matrix->h);
     return (0);
 }
     
