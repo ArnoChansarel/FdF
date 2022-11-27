@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:06:56 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/26 16:38:10 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:43:02 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 //	L'image est un tableau 1 dimension. On doit donc avec cette formule trouver le bon pixel :
 //	soit placer le pointeur a la bonne ligne (szline * y) puis sur la bonne colonne (bpp / 8)
 //	en partant du principe que les int sont codes sur 4bits (pourquoi / 8 ??) 
-
-	pixel = img->addr + (img->szline * y + x * (img->bpp / 8));
-	*(int *)pixel = color; //                                         => ????????
+	if (x < 1920 && y < 1080)
+	{
+		pixel = img->addr + (img->szline * y + x * (img->bpp / 8));
+		*(int *)pixel = color; //                                         => ????????
+	}
 }
 
 int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)

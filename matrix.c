@@ -6,11 +6,31 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 13:49:00 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:56:16 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+int	scale(t_matrix *ele)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < ele->h)
+	{
+		j = 0;
+		while (j < ele->w)
+		{
+			ele->mtx[i][j].x *= 50;
+			ele->mtx[i][j].y *= 50;
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 static char	*buffer_map(char *buff)
 {
@@ -18,7 +38,7 @@ static char	*buffer_map(char *buff)
 	int		fd;
 	char    *line;
 
-	fd = open("test_maps/42.fdf", O_RDONLY);    // => Faire passer une focntion check du fd au tout debut plutot
+	fd = open("test_maps/42.fdf", O_RDONLY);
 	i = 0;
 	while (i + 1 < 12)
 	{
@@ -63,13 +83,14 @@ static t_dot	**create_matrix(int h, int w, char **tab)
 		line = ft_split(tab[i], ' ');
 		while (j < w)
 		{
-			matrix[i][j].x = i;
-			matrix[i][j].y = j;
+			matrix[i][j].x = j;
+			matrix[i][j].y = i;
 			matrix[i][j].z = ft_atoi(line[j]);
 			//printf("x = %d | y = %d\n", matrix[i][j].x, matrix[i][j].y);
 			free(line[j]);
 			j++;
 		}
+		printf("ligne %d\n", i);
 		i++;
 	}
 	free(line);

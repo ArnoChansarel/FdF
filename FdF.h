@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 13:48:07 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/27 15:04:54 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+# define WHITE 0xFFFFFF
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -66,7 +68,9 @@ int     drawline(t_img *img, int x0, int y0, int x1, int y1, int color);
 int     destroy(int key, t_data *set);
 t_dot   **get_matrix(t_dot **mtx, int h, int w);
 void	img_pix_put(t_img *img, int x, int y, int color);
-int get_dimensions(t_matrix *matrix);
+int     get_dimensions(t_matrix *matrix);
+int     scale(t_matrix *ele);
+int     open_window(t_data *set);
 
 /*----LIBFT------*/
 int	ft_atoi(const char *str);
