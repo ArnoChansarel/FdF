@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 15:04:54 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:27:49 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <math.h>
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #include <stdio.h>
@@ -28,6 +29,7 @@
 # endif
 
 # define WHITE 0xFFFFFF
+# define pi 3.142857
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -71,6 +73,7 @@ void	img_pix_put(t_img *img, int x, int y, int color);
 int     get_dimensions(t_matrix *matrix);
 int     scale(t_matrix *ele);
 int     open_window(t_data *set);
+int     isometric(t_matrix  *matrix);
 
 /*----LIBFT------*/
 int	ft_atoi(const char *str);

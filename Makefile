@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/11/27 15:02:41 by achansar         ###   ########.fr        #
+#    Updated: 2022/11/28 18:04:28 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRC = 	fdf_main \
 		key \
 		matrix \
 		readfile \
-		window
+		window \
+		scale \
+		isometric
 
 C_FILES = $(SRC:=.c)
 OBJ = $(SRC:=.o)

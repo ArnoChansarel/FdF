@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 18:03:52 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/28 12:20:33 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,6 @@ static t_dot	**free_matrix(t_dot **matrix, int i)
 	free(matrix);
 	matrix = NULL;
 	return (matrix);
-}
-
-
-int	scale(t_matrix *ele)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < ele->h)
-	{
-		j = 0;
-		while (j < ele->w)
-		{
-			ele->mtx[i][j].x = ele->mtx[i][j].x * 50 + 400;
-			ele->mtx[i][j].y = ele->mtx[i][j].y * 50 + 300;
-			j++;
-		}
-		i++;
-	}
-	return (0);
 }
 
 static char	*buffer_map(char *buff)
