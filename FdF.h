@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/28 19:27:49 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:59:56 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int     get_dimensions(t_matrix *matrix);
 int     scale(t_matrix *ele);
 int     open_window(t_data *set);
 int     isometric(t_matrix  *matrix);
+int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color);
 
 /*----LIBFT------*/
 int	ft_atoi(const char *str);

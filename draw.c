@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:06:56 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/28 12:18:36 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:05:26 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,59 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 
 int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
-	int p;
-	int dx;
-	int dy;
+	float m;
+	float dx;
+	float dy;
+	int x = x0;
+	int y = y0;
+	float e = 0;
 
-	dx = x1 - x0;
-	dy = y1 - y0;
-	if (dx != 0)
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	m = dy / dx;
+
+	//printf("\nm = %f\n\n", m);
+
+	//printf("xy0 = %d, %d || xy1 = %d,%d\n\n---------\n", x0, y0, x1, y1);
+	while (x < x1)
 	{
-		p = (dy / dx) + y0;
-		while (x0 <= x1 || y0 <= y1)
+		img_pix_put(img, x, y, color);
+		x++;
+		e -= m;
+		if (e <= -0.5)
 		{
-			if (p >= 0)
-			{
-				img_pix_put(img, x0, y0, color);
-				p = p + 2 * dy - 2 * dx;
-				y0 += 1;
-			}
-			else
-			{
-				img_pix_put(img, x0, y0, color);
-				p = p + 2* dy;
-			}
-			x0 += 1;
+			e = e + 1;
+			y++;
 		}
+		//printf("x = %d, y = %d || e = %f\n", x, y, e);
 	}
-	else
+	//printf("x,y = %d,%d\n", x, y);
+	return (0);
+}
+
+int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color)
+{
+	float m;
+	float dx;
+	float dy;
+	int x = x0;
+	int y = y0;
+	float e = 0;
+
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	m = dy / dx;
+
+	while (x > x1)
 	{
-		while (y0 <= y1)
-			img_pix_put(img, x0, y0++, color);
+		img_pix_put(img, x, y, color);
+		x--;
+		e -= m;
+		if (e <= -0.5)
+		{
+			e = e + 1;
+			y++;
+		}
 	}
 	return (0);
 }

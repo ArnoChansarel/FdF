@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:36:23 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/27 16:35:48 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/29 11:43:36 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int	destroy(int key, t_data *set)
 		free(set->mlx);
 		exit(0);
 	}
-	
 	return (0);
 }

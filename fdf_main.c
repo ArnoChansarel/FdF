@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/28 19:42:14 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:07:35 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void)
 		while (j < matrix.w - 1)     
 		{
 			img_pix_put(&set.img, matrix.mtx[i][j].x, matrix.mtx[i][j].y, WHITE);
-			drawline(&set.img, matrix.mtx[i][j].x, matrix.mtx[i][j].y, matrix.mtx[i+1][j].x, matrix.mtx[i+1][j].y, WHITE);
+			drawline_g(&set.img, matrix.mtx[i][j].x, matrix.mtx[i][j].y, matrix.mtx[i+1][j].x, matrix.mtx[i+1][j].y, WHITE);
 			drawline(&set.img, matrix.mtx[i][j].x, matrix.mtx[i][j].y, matrix.mtx[i][j+1].x, matrix.mtx[i][j+1].y, WHITE);
 			j++;
 		}
