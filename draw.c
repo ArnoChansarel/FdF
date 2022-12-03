@@ -6,13 +6,13 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:06:56 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/29 19:05:26 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:56:07 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+static void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char *pixel;
 
@@ -24,15 +24,13 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 		pixel = img->addr + (img->szline * y + x * (img->bpp / 8));
 		*(int *)pixel = color; //                                         => ????????
 	}
-}
+}// =>          attention au segfault si les valeurs depassent INT_MAX/MIN
 
-int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
+static int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
 	float m;
 	float dx;
 	float dy;
-	int x = x0;
-	int y = y0;
 	float e = 0;
 
 	dx = abs(x1 - x0);
@@ -42,15 +40,15 @@ int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
 	//printf("\nm = %f\n\n", m);
 
 	//printf("xy0 = %d, %d || xy1 = %d,%d\n\n---------\n", x0, y0, x1, y1);
-	while (x < x1)
+	while (x0 < x1)
 	{
-		img_pix_put(img, x, y, color);
-		x++;
+		img_pix_put(img, x0, y0, color);
+		x0++;
 		e -= m;
 		if (e <= -0.5)
 		{
 			e = e + 1;
-			y++;
+			y0++;
 		}
 		//printf("x = %d, y = %d || e = %f\n", x, y, e);
 	}
@@ -58,29 +56,50 @@ int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
 	return (0);
 }
 
-int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color)
+static int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
 	float m;
 	float dx;
 	float dy;
-	int x = x0;
-	int y = y0;
 	float e = 0;
 
 	dx = abs(x1 - x0);
 	dy = abs(y1 - y0);
 	m = dy / dx;
 
-	while (x > x1)
+	while (x0 > x1)
 	{
-		img_pix_put(img, x, y, color);
-		x--;
+		img_pix_put(img, x0, y0, color);
+		x0--;
 		e -= m;
 		if (e <= -0.5)
 		{
 			e = e + 1;
-			y++;
+			y0++;
 		}
 	}
+	return (0);
+}
+
+int	drawline_all(t_img *img, t_dot **mtx, int w, int h)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < h)
+	{
+		j = 0;
+		while (j < w)     
+		{
+			img_pix_put(img, mtx[i][j].x, mtx[i][j].y, WHITE);
+			if (i != h - 1)
+				drawline_g(img, mtx[i][j].x, mtx[i][j].y, mtx[i+1][j].x, mtx[i+1][j].y, WHITE);
+			if (j != w - 1)
+				drawline(img, mtx[i][j].x, mtx[i][j].y, mtx[i][j+1].x, mtx[i][j+1].y, WHITE);
+			j++;
+		}
+		i++;
+	 }
 	return (0);
 }

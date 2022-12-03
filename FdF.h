@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/29 18:59:56 by achansar         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:58:35 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,23 @@ typedef struct s_data {
     t_img   img;
 }   t_data;
 
-int     drawline(t_img *img, int x0, int y0, int x1, int y1, int color);
 int     destroy(int key, t_data *set);
-t_dot   **get_matrix(t_dot **mtx, int h, int w);
-void	img_pix_put(t_img *img, int x, int y, int color);
-int     get_dimensions(t_matrix *matrix);
+t_dot   **get_matrix(t_dot **mtx, char *file_path, int h, int w);
+int     get_dimensions(t_matrix *matrix, char *file_path);
 int     scale(t_matrix *ele);
 int     open_window(t_data *set);
 int     isometric(t_matrix  *matrix);
-int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color);
+int     drawline_all(t_img *img, t_dot **mtx, int w, int h);
 
 /*----LIBFT------*/
-int	ft_atoi(const char *str);
+int     ft_atoi(const char *str);
 char	*get_next_line(int fd);
 char	*ft_strdup_gnl(char *s1);
 int		ft_strlen(char *s);
 int		ft_isin(char *str, int c);
 char	*ft_strjoin_gnl(char *s1, char *s2);
 void	*ft_free_all(char *s1, char **s2);
+int     ft_isdigit(int c);
 
 char	**ft_split(char *s, char c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
