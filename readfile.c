@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 10:03:12 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:34:12 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,26 @@ static int get_width(int w, char *file_path)
     int fd;
     int i;
     char *line;
+    char **tabline;
 
     fd = open(file_path, O_RDONLY);
     line = get_next_line(fd);
+    tabline = ft_split(line, ' ');
     i = 0;
     w = 0;
-    while (line[i] && line[i] != '\n')//     => transformer cette fctn en checker pour justifier l'ouverture complete
+    while (tabline[i])//     => transformer cette fctn en checker pour justifier l'ouverture complete
     {
-        if (ft_isdigit(line[i]))
-            w += 1;
+        w += 1;
+        printf("ele = %s\n", tabline[i]);
         get_next_line(fd);
+        free(tabline[i]);
         i++;
    }
+    free(tabline);
     free(line);
     close(fd);
     //printf("w = %d\n", w);
-    return (w);
+    return (w - 1);
 }
 
 int get_dimensions(t_matrix *matrix, char *file_path)

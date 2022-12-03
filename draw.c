@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:06:56 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:56:07 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:50:10 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,57 @@ static void	img_pix_put(t_img *img, int x, int y, int color)
 
 static int drawline(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
-	float m;
-	float dx;
-	float dy;
-	float e = 0;
+	int dx;
+	int dy;
+	int ex;
+	int ey;
+	int distx;
+	int disty;
+	int i;
+	int ix;
+	int iy;
 
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	m = dy / dx;
-
-	//printf("\nm = %f\n\n", m);
-
-	//printf("xy0 = %d, %d || xy1 = %d,%d\n\n---------\n", x0, y0, x1, y1);
-	while (x0 < x1)
+	ix = 1;
+	iy = 1;
+	if (x0 > x1)
+		ix = -1;
+	if (y0 > y1)
+		iy = -1;
+	ex = abs(x1 - x0);//               qu'est-ce qu'on va faire de toi...
+	ey = abs(y1 - y0);
+	dx = 2 * ex;
+	dy = 2 * ey;
+	disty = ey;
+	distx = ex;
+	i = 0;
+	if (distx >= disty)
 	{
-		img_pix_put(img, x0, y0, color);
-		x0++;
-		e -= m;
-		if (e <= -0.5)
+		while (i < distx)
 		{
-			e = e + 1;
-			y0++;
+			i++;
+			img_pix_put(img, x0, y0, color);
+			x0 += ix;
+			ex -= dy;
+			if (ex < 0)
+			{
+				ex += dx;
+				y0 += iy;
+			}
 		}
-		//printf("x = %d, y = %d || e = %f\n", x, y, e);
 	}
-	//printf("x,y = %d,%d\n", x, y);
-	return (0);
-}
-
-static int drawline_g(t_img *img, int x0, int y0, int x1, int y1, int color)
-{
-	float m;
-	float dx;
-	float dy;
-	float e = 0;
-
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	m = dy / dx;
-
-	while (x0 > x1)
+	else if (distx < disty)
 	{
-		img_pix_put(img, x0, y0, color);
-		x0--;
-		e -= m;
-		if (e <= -0.5)
+		while (i < disty)
 		{
-			e = e + 1;
-			y0++;
+			i++;
+			img_pix_put(img, x0, y0, color);
+			y0 += iy;
+			ey -= dx;
+			if (ey < 0)
+			{
+				ey += dy;
+				x0 += ix;
+			}
 		}
 	}
 	return (0);
@@ -94,7 +97,7 @@ int	drawline_all(t_img *img, t_dot **mtx, int w, int h)
 		{
 			img_pix_put(img, mtx[i][j].x, mtx[i][j].y, WHITE);
 			if (i != h - 1)
-				drawline_g(img, mtx[i][j].x, mtx[i][j].y, mtx[i+1][j].x, mtx[i+1][j].y, WHITE);
+				drawline(img, mtx[i][j].x, mtx[i][j].y, mtx[i+1][j].x, mtx[i+1][j].y, WHITE);
 			if (j != w - 1)
 				drawline(img, mtx[i][j].x, mtx[i][j].y, mtx[i][j+1].x, mtx[i][j+1].y, WHITE);
 			j++;

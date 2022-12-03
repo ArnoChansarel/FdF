@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/30 16:52:14 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:45:12 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static t_dot	**create_matrix(int h, int w, char **tab)
 		{
 			matrix[i][j].x = j;
 			matrix[i][j].y = i;
+			printf(" %s - >", line[j]);
 			matrix[i][j].z = ft_atoi(line[j]);
 			//printf("x = %d | y = %d", matrix[i][j].x, matrix[i][j].y);
 			//printf(" | z = %d\n", matrix[i][j].z);
@@ -94,6 +95,16 @@ t_dot **get_matrix(t_dot **mtx, char *file_path, int h, int w)
 	map = ft_split(buff, '\n');
 	free(buff);
     mtx = create_matrix(h, w, map);
-	//printf("x = %d | y = %d\n", mtx[5][5].x, mtx[5][5].y);
+	// int i = 0, j = 0;
+	// while (i < h)
+	// {
+	// 	j = 0;
+	// 	while (j < w)
+	// 	{
+	// 		printf("x = %d | y = %d | z = %d \n", mtx[i][j].x, mtx[i][j].y, mtx[i][j].z);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	return (mtx);
 }

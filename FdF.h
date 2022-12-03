@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/11/30 15:58:35 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/03 15:00:54 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_dot {
     int     x;
     int     y;
     int     z;
+    /*int     signx;
+    int     signy;
+    int     dx;
+    int     dy;*/
 }   t_dot;
 
 typedef struct s_matrix {
