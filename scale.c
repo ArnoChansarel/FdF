@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 12:20:41 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 15:46:43 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:58:43 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	scale(t_matrix *ele)
 		j = 0;
 		while (j < ele->w)
 		{
-			ele->mtx[i][j].x = ele->mtx[i][j].x * 50 + 800;
-			ele->mtx[i][j].y = ele->mtx[i][j].y * 50;
+			ele->mtx[i][j].x = ele->mtx[i][j].x * 10 + 800;
+			ele->mtx[i][j].y = ele->mtx[i][j].y * 10;
             ele->mtx[i][j].z = ele->mtx[i][j].z;
 			j++;
 		}

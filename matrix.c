@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 15:45:12 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:16:31 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_dot	**create_matrix(int h, int w, char **tab)
 		{
 			matrix[i][j].x = j;
 			matrix[i][j].y = i;
-			printf(" %s - >", line[j]);
+			//printf(" %s - >", line[j]);
 			matrix[i][j].z = ft_atoi(line[j]);
 			//printf("x = %d | y = %d", matrix[i][j].x, matrix[i][j].y);
 			//printf(" | z = %d\n", matrix[i][j].z);

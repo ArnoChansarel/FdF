@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 15:00:54 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:55:29 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@
 # endif
 
 # define WHITE 0xFFFFFF
+# define RED 0xFF0000
 # define pi 3.142857
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # define ESC 53
 
@@ -46,6 +47,17 @@ typedef struct s_dot {
     int     dx;
     int     dy;*/
 }   t_dot;
+
+typedef struct s_line {
+
+    int x0;
+    int y0;
+    int x1;
+    int y1;
+    int ix;
+    int iy;
+    int i;
+} t_line;
 
 typedef struct s_matrix {
 
@@ -65,18 +77,23 @@ typedef struct s_img {
 
 typedef struct s_data {
 
-    void    *mlx;
-    void    *win;
-    t_img   img;
+    void        *mlx;
+    void        *win;
+    t_img       img;
+    t_matrix    matrix;
 }   t_data;
 
-int     destroy(int key, t_data *set);
+//int     destroy(int key, t_data *set);
 t_dot   **get_matrix(t_dot **mtx, char *file_path, int h, int w);
 int     get_dimensions(t_matrix *matrix, char *file_path);
 int     scale(t_matrix *ele);
 int     open_window(t_data *set);
 int     isometric(t_matrix  *matrix);
-int     drawline_all(t_img *img, t_dot **mtx, int w, int h);
+int     drawline_all(t_img *img, t_matrix *matrix, t_dot **mtx);
+int     bresenham(t_img *img, t_line line, int color);
+t_line  bresenham_init(int x, int y, int x1, int y1);
+void	img_pix_put(t_img *img, int x, int y, int color);
+int ft_keys(int key, t_data *set);
 
 /*----LIBFT------*/
 int     ft_atoi(const char *str);

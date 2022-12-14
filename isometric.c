@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:56:21 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 15:38:18 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:47:34 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float ft_radian(float a)
     float f;
     
     f = (a * pi) / 180;
-    return (f);
+    return (round(f));
 }
 
 int isometric(t_matrix  *matrix)
@@ -32,7 +32,7 @@ int isometric(t_matrix  *matrix)
         j = 0;
         while (j < matrix->w)
         {
-            matrix->mtx[i][j].x = (matrix->mtx[i][j].x - matrix->mtx[i][j].y) * cos(ft_radian(45));
+            matrix->mtx[i][j].x = (matrix->mtx[i][j].x - matrix->mtx[i][j].y) * cos(ft_radian(-45));
             matrix->mtx[i][j].y = (matrix->mtx[i][j].x + matrix->mtx[i][j].y) * sin(ft_radian(45)) - matrix->mtx[i][j].z;
             j++;
         }

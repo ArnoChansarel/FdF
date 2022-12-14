@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/03 15:34:12 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:44:06 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int get_width(int w, char *file_path)
     while (tabline[i])//     => transformer cette fctn en checker pour justifier l'ouverture complete
     {
         w += 1;
-        printf("ele = %s\n", tabline[i]);
+        //printf("ele = %s\n", tabline[i]);
         get_next_line(fd);
         free(tabline[i]);
         i++;
