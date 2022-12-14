@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 14:06:56 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/14 12:32:32 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:42:05 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	if (x < WIDTH && x >= 0 && y < HEIGHT && y >= 0)
 	{
 		pixel = img->addr + (img->szline * y + x * (img->bpp / 8));
-		*(int *)pixel = color; //                                         => ????????
+		*(int *)pixel = color; //                                         => c'est la valeur du pointeur que l'on change
 	}
-}// =>          attention au segfault si les valeurs depassent INT_MAX/MIN
+}
 
-int	drawline_all(t_img *img, t_matrix *matrix, t_dot **mtx)
+int	drawline_all(t_data *set, t_img *img, t_matrix *matrix, t_dot **mtx)
 {
 	int i;
 	int j;
@@ -52,6 +52,7 @@ int	drawline_all(t_img *img, t_matrix *matrix, t_dot **mtx)
 			j++;
 		}
 		i++;
-	 }
+	}
+	mlx_put_image_to_window(set->mlx, set->win, set->img.img, 0, 0);
 	return (0);
 }

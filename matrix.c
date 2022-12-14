@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/13 11:16:31 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:38:17 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,5 @@ t_dot **get_matrix(t_dot **mtx, char *file_path, int h, int w)
 	map = ft_split(buff, '\n');
 	free(buff);
     mtx = create_matrix(h, w, map);
-	// int i = 0, j = 0;
-	// while (i < h)
-	// {
-	// 	j = 0;
-	// 	while (j < w)
-	// 	{
-	// 		printf("x = %d | y = %d | z = %d \n", mtx[i][j].x, mtx[i][j].y, mtx[i][j].z);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 	return (mtx);
 }
