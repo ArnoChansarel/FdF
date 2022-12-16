@@ -6,11 +6,26 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/14 16:38:17 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:45:17 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
+
+static int get_color(char *ele, t_dot *dot)
+{
+	int i;
+	char **tab;
+
+	i = 0;
+	tab = ft_split(ele, ',');
+	dot->z = atoi(tab[0]);
+	dot->color = hextoi(tab[1]);
+	while(tab[i])
+		free(tab[i++]);
+	free(tab);
+	return (0);
+}
 
 static t_dot	**free_matrix(t_dot **matrix, int i)
 {
@@ -32,7 +47,6 @@ static char	*buffer_map(char *buff, char *file_path, int h)
 
 	fd = open(file_path, O_RDONLY);
 	i = 0;
-	//printf("line before = %s\n", line);
 	while (i < h)
 	{
 		line = get_next_line(fd);
@@ -55,25 +69,25 @@ static t_dot	**create_matrix(int h, int w, char **tab)
 	if (!matrix)
 		return (matrix);
 	i = 0;
-	//printf("h = %d | w = %d\n", h, w);
 	while (i < h)
 	{
 		j = 0;
 		matrix[i] = malloc(sizeof(t_dot) * w);
 		if (!matrix[i])
 			return(free_matrix(matrix, i));
-		//printf("line = %s\n", tab[i]);
 		line = ft_split(tab[i], ' ');
 		while (j < w)
 		{
 			matrix[i][j].x = j;
 			matrix[i][j].y = i;
-			//printf(" %s - >", line[j]);
-			matrix[i][j].z = ft_atoi(line[j]);
-			//printf("x = %d | y = %d", matrix[i][j].x, matrix[i][j].y);
-			//printf(" | z = %d\n", matrix[i][j].z);
+			if (ft_isin(line[j], ',') != 1)
+				get_color(line[j], &matrix[i][j]);
+			else
+			{
+				matrix[i][j].z = ft_atoi(line[j]);
+				matrix[i][j].color = WHITE;
+			}
 			free(line[j]);
-			//
 			j++;
 		}
 		i++;

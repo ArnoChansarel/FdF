@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/13 12:39:37 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/16 10:26:50 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC = 	fdf_main \
 		window \
 		scale \
 		isometric \
-		bresenham
+		bresenham \
+		fdf_utils
 
 C_FILES = $(SRC:=.c)
 OBJ = $(SRC:=.o)

@@ -6,14 +6,14 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/14 16:36:37 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:23:13 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include <mlx.h>
-# include <stdlib.h>
+# include <stdlib.h>//                       => verifier si les include sont necessaires dans chacun des fichiers (utils)
 # include <unistd.h>
 # include <limits.h>
 # include <fcntl.h>//                        => verifier l'utilite de chaque lib
@@ -97,9 +97,11 @@ int     isometric(t_matrix  *matrix);
 int     drawline_all(t_data *set, t_img *img, t_matrix *matrix, t_dot **mtx);
 int     bresenham(t_img *img, t_line line, int color);
 t_line  bresenham_init(int x, int y, int x1, int y1);
-void	img_pix_put(t_img *img, int x, int y, int color);
+void	img_pix_put(t_dot *dot, t_img *img, int x, int y);
 int     ft_keys(int key, t_data *set);
 int     destroy(t_data *set);
+int hextoi(char *hex);
+int check_map_width(char **tabline);
 
 /*----LIBFT------*/
 int     ft_atoi(const char *str);
