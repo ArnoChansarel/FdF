@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/20 17:08:51 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:31:37 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ NORMINETTE
 PROJECTION SUPP - PARALLEL
 ROTATION
 */
-
-
 
 int	open_window(t_data *set)
 {

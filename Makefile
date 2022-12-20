@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/20 17:19:32 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/20 17:42:14 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,13 @@ SRC = 	fdf_main \
 		bresenham \
 		fdf_utils
 
-C_FILES = $(SRC:=.c)
-OBJ = $(SRC:=.o)
+SRC_PATH = ./srcs/
+
+C_FILES = $(addprefix $(SRC_PATH), $(SRC:=.c))
+OBJ = $(addprefix $(SRC_PATH), $(SRC:=.o))
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3
-MLX = -lmlx -framework OpenGL -framework AppKit
+FLAGS = -Wall -Werror -Wextra 
+MLX = -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g 
 
 #LIBFT
 LBFT = ./libft/
@@ -43,7 +45,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	$(CC) $(FLAGS) -c -I /usr/local/include $(LBFT_INC) $< -o $@ 
+	$(CC) $(FLAGS) -c -I /usr/local/include $(LBFT_INC) $< -o $@
 
 $(LBFT_LIB):
 	make -C $(LBFT)
