@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/16 18:23:13 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:09:00 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
-# define pi 3.142857
 
 # define WIDTH 1000
 # define HEIGHT 1000
@@ -43,6 +42,8 @@ enum keys {
     RIGHT       = 124,
     ZOOM_IN     = 69,
     ZOOM_OUT    = 78,
+    Z_UP        = 92,
+    Z_DOWN      = 85,
     MOUSE       = 1
 };
 
@@ -55,6 +56,7 @@ typedef struct s_line {
     int ix;
     int iy;
     int i;
+    int color;
 } t_line;
 
 typedef struct s_dot {
@@ -92,16 +94,16 @@ typedef struct s_data {
 t_dot   **get_matrix(t_dot **mtx, char *file_path, int h, int w);
 int     get_dimensions(t_matrix *matrix, char *file_path);//                 => Verifier l'utilite de chaque fonction
 int     scale(t_matrix *ele);
-int     open_window(t_data *set);
 int     isometric(t_matrix  *matrix);
 int     drawline_all(t_data *set, t_img *img, t_matrix *matrix, t_dot **mtx);
-int     bresenham(t_img *img, t_line line, int color);
+int     bresenham(t_img *img, t_line line);
 t_line  bresenham_init(int x, int y, int x1, int y1);
-void	img_pix_put(t_dot *dot, t_img *img, int x, int y);
+void	img_pix_put(t_img *img, int x, int y);
 int     ft_keys(int key, t_data *set);
 int     destroy(t_data *set);
-int hextoi(char *hex);
-int check_map_width(char **tabline);
+t_dot **free_matrix(t_dot **matrix, int i);
+int ft_error_msg(char *str);
+int	free_tab(char **tab);
 
 /*----LIBFT------*/
 int     ft_atoi(const char *str);

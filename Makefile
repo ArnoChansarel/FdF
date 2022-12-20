@@ -6,20 +6,19 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/16 10:26:50 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/20 17:19:32 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #TARGET
 NAME = fdf
 
-
+#FDF FILES
 SRC = 	fdf_main \
 		draw \
 		key \
 		matrix \
 		readfile \
-		window \
 		scale \
 		isometric \
 		bresenham \
@@ -27,15 +26,15 @@ SRC = 	fdf_main \
 
 C_FILES = $(SRC:=.c)
 OBJ = $(SRC:=.o)
-CC = cc
+CC = gcc
 FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3
-MLX = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX = -lmlx -framework OpenGL -framework AppKit
 
 #LIBFT
 LBFT = ./libft/
 LBFT_LIB = $(addprefix $(LBFT), ft.a)
 LBFT_INC = -I $(LBFT)
-LBFT_LINK = -L $(LBFT) -l ft
+LBFT_LINK = -L $(LBFT) -lft
 
 #RULES
 all: $(LBFT_LIB) $(NAME)
@@ -44,7 +43,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	$(CC) $(FLAGS) -c -I /usr/local/include $(LBFT_INC) $< -o $@
+	$(CC) $(FLAGS) -c -I /usr/local/include $(LBFT_INC) $< -o $@ 
 
 $(LBFT_LIB):
 	make -C $(LBFT)
