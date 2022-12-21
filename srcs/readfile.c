@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/20 15:56:52 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/21 11:41:07 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	get_height(int h, char *file_path)
 
 	h = 0;
 	fd = open(file_path, O_RDONLY);
+	if (!fd)
+		return (ft_error_msg("ERROR : Wrong map dimensions."));
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -48,7 +50,7 @@ static int	get_width(int w, int fd)
 			{
 				close(fd);
 				free(line);
-				return (0);
+				return (ft_error_msg("ERROR : Wrong map dimensions."));
 			}
 		}
 		free(line);
@@ -62,7 +64,7 @@ static int	get_width(int w, int fd)
 int	get_dimensions(t_matrix *matrix, char *file_path)
 {
 	int	fd;
-	int w;
+	int	w;
 
 	w = 0;
 	fd = 0;
@@ -70,9 +72,11 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 	if (!fd)
 		return (ft_error_msg("ERROR : failed to open file."));
 	matrix->w = get_width(w, fd);
-	if (!matrix->w)
+	if (matrix->w <= 0)
 		return (1);
 	matrix->h = get_height(matrix->h, file_path);
+	if (matrix->h <= 0)
+		return (1);
 	printf("w = %d | h = %d\n", matrix->w, matrix->h);
 	return (0);
 }

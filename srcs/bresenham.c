@@ -6,25 +6,11 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 12:37:14 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/19 17:58:02 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:31:13 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
-
-t_line	bresenham_init(int x, int y, int x1, int y1)
-{
-	t_line	line;
-
-	line.x0 = x;
-	line.y0 = y;
-	line.x1 = x1;
-	line.y1 = y1;
-	line.ix = 1;
-	line.iy = 1;
-	line.i = 0;
-	return (line);
-}
 
 static int	b_left(t_img *img, t_line line, int ex, int ey)
 {
@@ -39,7 +25,7 @@ static int	b_left(t_img *img, t_line line, int ex, int ey)
 	while (line.i < dist)
 	{
 		line.i++;
-		img_pix_put(img, line.x0, line.y0);
+		img_pix_put(img, line.x0, line.y0, line.color);
 		line.y0 += line.iy;
 		ey -= dx;
 		if (ey < 0)
@@ -64,7 +50,7 @@ static int	b_right(t_img *img, t_line line, int ex, int ey)
 	while (line.i < dist)
 	{
 		line.i++;
-		img_pix_put(img, line.x0, line.y0);
+		img_pix_put(img, line.x0, line.y0, line.color);
 		line.x0 += line.ix;
 		ex -= dy;
 		if (ex < 0)
@@ -76,7 +62,7 @@ static int	b_right(t_img *img, t_line line, int ex, int ey)
 	return (0);
 }
 
-int	bresenham(t_img *img, t_line line)
+static int	bresenham(t_img *img, t_line line)
 {
 	int	ex;
 	int	ey;
@@ -91,5 +77,24 @@ int	bresenham(t_img *img, t_line line)
 		b_right(img, line, ex, ey);
 	if (ex < ey)
 		b_left(img, line, ex, ey);
+	return (0);
+}
+
+int	bresenham_init(t_img *img, t_dot a, t_dot b)
+{
+	t_line	line;
+
+	line.x0 = a.x;
+	line.y0 = a.y;
+	line.x1 = b.x;
+	line.y1 = b.y;
+	line.ix = 1;
+	line.iy = 1;
+	line.i = 0;
+	if (a.z <= 1 && a.z >= -1 && b.z <= 1 && b.z >= -1)
+		line.color = WHITE;
+	else
+		line.color = RED;
+	bresenham(img, line);
 	return (0);
 }

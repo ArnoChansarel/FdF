@@ -6,31 +6,30 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/20 17:42:14 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/21 13:20:06 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #TARGET
 NAME = fdf
 
+#ARGUMENTS
+CC = gcc
+FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3 -fsanitize=address -g
+MLX = -lmlx -framework OpenGL -framework AppKit 
+
 #FDF FILES
+SRC_PATH = ./srcs/
 SRC = 	fdf_main \
 		draw \
 		key \
 		matrix \
 		readfile \
-		scale \
 		isometric \
 		bresenham \
 		fdf_utils
-
-SRC_PATH = ./srcs/
-
 C_FILES = $(addprefix $(SRC_PATH), $(SRC:=.c))
 OBJ = $(addprefix $(SRC_PATH), $(SRC:=.o))
-CC = gcc
-FLAGS = -Wall -Werror -Wextra 
-MLX = -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g 
 
 #LIBFT
 LBFT = ./libft/
@@ -39,13 +38,13 @@ LBFT_INC = -I $(LBFT)
 LBFT_LINK = -L $(LBFT) -lft
 
 #RULES
-all: $(LBFT_LIB) $(NAME)
+all: $(LBFT_LIB) $(NAME)#                                          => attention ! relink du libft
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	$(CC) $(FLAGS) -c -I /usr/local/include $(LBFT_INC) $< -o $@
+	$(CC) -c $(LBFT_INC) $< -o $@
 
 $(LBFT_LIB):
 	make -C $(LBFT)

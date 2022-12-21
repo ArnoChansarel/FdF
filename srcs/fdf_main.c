@@ -6,26 +6,24 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/20 17:31:37 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:27:03 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 /*
 COULEUR + HEXA
-LEAKS
-FENETRE DYNAMIQUE
-NORMINETTE
 --
-PROJECTION SUPP - PARALLEL
 ROTATION
 */
 
-int	open_window(t_data *set)
+static int	open_window(t_data *set)
 {
 	set->mlx = mlx_init();
 	if (!set->mlx)
 		return (1);
+	if (WIDTH < 500 || WIDTH > 2560 || HEIGHT < 500 || HEIGHT > 2000)
+		return (ft_error_msg("Wrong window dimensions."));
 	set->win = mlx_new_window(set->mlx, WIDTH, HEIGHT, "FdF");
 	if (!set->win)
 		return (1);
@@ -41,17 +39,20 @@ int	main(int argc, char *argv[])
 
 	if (argc == 2)
 	{
-		open_window(&set);
 		if (get_dimensions(&set.matrix, argv[1]) != 0)
-			return (ft_error_msg("ERROR : Wrong map dimensions."));
-		set.matrix.mtx = get_matrix(set.matrix.mtx, argv[1],
-				set.matrix.h, set.matrix.w);
-		scale(&set.matrix);
+			return (1);
+		set.matrix.mtx = get_matrix(set.matrix.mtx, set.matrix, argv[1]);
+		if (!set.matrix.mtx)
+			return (ft_error_msg("ERROR : Matrix couldn't be created."));
 		isometric(&set.matrix);
+		if (open_window(&set) != 0)
+			return (ft_error_msg("ERROR : Failed to open window."));
 		drawline_all(&set, &set.img, &set.matrix, set.matrix.mtx);
-		mlx_key_hook(set.win, &ft_keys, &set);
+		mlx_hook(set.win, KEYPRESS, (1L << 0), &ft_keys, &set);
 		mlx_hook(set.win, 17, 0, &destroy, &set);
 		mlx_loop(set.mlx);
 	}
+	else
+		return (ft_error_msg("ERROR : Only 1 argument is required."));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/20 16:38:55 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/21 10:48:08 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,52 +44,51 @@ static char	*buffer_map(char *buff, char *file_path, int h)
 	return (buff);
 }
 
-static t_dot	**create_matrix(int h, int w, char **map)
+static t_dot	**create_matrix(t_dot **mtx, t_matrix matrix,
+				char **line, char **map)
 {
 	int		i;
 	int		j;
-	char	**line;//               => enlever ces deux declarations
-	t_dot	**matrix;
 
-	matrix = malloc(sizeof(t_dot *) * h);
-	if (!matrix)
-		return (matrix);
 	i = 0;
-	while (i < h)
+	while (i < matrix.h)
 	{
 		j = 0;
-		matrix[i] = malloc(sizeof(t_dot) * w);
-		if (!matrix[i])
-			return (free_matrix(matrix, i));
+		mtx[i] = malloc(sizeof(t_dot) * matrix.w);
+		if (!mtx[i])
+			return (free_matrix(mtx, i));
 		line = ft_split(map[i], ' ');
-		while (j < w)
+		while (j < matrix.w)
 		{
-			matrix[i][j].x = j;
-			matrix[i][j].y = i;
-			matrix[i][j].z = ft_atoi(line[j]);
-			//printf("%d | ", (int)matrix[i][j].z);
+			mtx[i][j].x = j;
+			mtx[i][j].y = i;
+			mtx[i][j].z = ft_atoi(line[j]);
 			j++;
 		}
-		//printf("\n");
 		free_tab(line);
 		i++;
 	}
 	free_tab(map);
-	return (matrix);
+	return (mtx);
 }
 
-t_dot	**get_matrix(t_dot **mtx, char *file_path, int h, int w)
+t_dot	**get_matrix(t_dot **mtx, t_matrix matrix, char *file_path)
 {
 	char	*buff;
 	char	**map;
+	char	**line;
 
+	line = NULL;
 	buff = malloc(sizeof(char) * 1);
 	if (!buff)
 		return (0);
 	buff[0] = '\0';
-	buff = buffer_map(buff, file_path, h);
+	buff = buffer_map(buff, file_path, matrix.h);
 	map = ft_split(buff, '\n');
 	free(buff);
-	mtx = create_matrix(h, w, map);
+	mtx = malloc(sizeof(t_dot *) * matrix.h);
+	if (!mtx)
+		return (mtx);
+	mtx = create_matrix(mtx, matrix, line, map);
 	return (mtx);
 }
