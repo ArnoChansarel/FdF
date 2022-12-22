@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:56:21 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/21 14:37:55 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:46:29 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	isometric(t_matrix *matrix)
 	int	j;
 
 	i = 0;
-	j = 0;
 	scale(matrix);
 	while (i < matrix->h)
 	{

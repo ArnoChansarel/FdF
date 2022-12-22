@@ -6,15 +6,16 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/21 14:27:03 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:19:35 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 /*
-COULEUR + HEXA
+makefile relink. Demander a GPT ?
 --
 ROTATION
+2e projection ?
 */
 
 static int	open_window(t_data *set)
@@ -43,10 +44,10 @@ int	main(int argc, char *argv[])
 			return (1);
 		set.matrix.mtx = get_matrix(set.matrix.mtx, set.matrix, argv[1]);
 		if (!set.matrix.mtx)
-			return (ft_error_msg("ERROR : Matrix couldn't be created."));
+			return (ft_error_msg("ERROR : Matrix couldn't be created."));//    Ne pas oublier !
 		isometric(&set.matrix);
 		if (open_window(&set) != 0)
-			return (ft_error_msg("ERROR : Failed to open window."));
+			return (ft_error_msg("ERROR : Failed to open window."));//         Changer en ft_printf !
 		drawline_all(&set, &set.img, &set.matrix, set.matrix.mtx);
 		mlx_hook(set.win, KEYPRESS, (1L << 0), &ft_keys, &set);
 		mlx_hook(set.win, 17, 0, &destroy, &set);

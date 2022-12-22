@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/21 13:20:06 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/22 11:05:16 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = fdf
 
 #ARGUMENTS
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3 -fsanitize=address -g
+FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3 
+SEG = -fsanitize=address -g
 MLX = -lmlx -framework OpenGL -framework AppKit 
 
 #FDF FILES
@@ -41,10 +42,10 @@ LBFT_LINK = -L $(LBFT) -lft
 all: $(LBFT_LIB) $(NAME)#                                          => attention ! relink du libft
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
+	$(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	$(CC) -c $(LBFT_INC) $< -o $@
+	$(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
 
 $(LBFT_LIB):
 	make -C $(LBFT)

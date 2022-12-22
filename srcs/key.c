@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:36:23 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/21 14:38:40 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:07:53 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static int	ft_arrows(t_data *set, int key)
 		while (j < set->matrix.w)
 		{
 			if (key == UP)
-				set->matrix.mtx[i][j].y -= 25;
+				set->matrix.mtx[i][j].y -= 10;
 			else if (key == DOWN)
-				set->matrix.mtx[i][j].y += 25;
+				set->matrix.mtx[i][j].y += 10;
 			else if (key == LEFT)
-				set->matrix.mtx[i][j].x -= 25;
+				set->matrix.mtx[i][j].x -= 10;
 			else if (key == RIGHT)
-				set->matrix.mtx[i][j].x += 25;
+				set->matrix.mtx[i][j].x += 10;
 			j++;
 		}
 		i++;
