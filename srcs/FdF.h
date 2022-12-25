@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/21 14:37:44 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:30:02 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 # include <limits.h>//                        => verifier l'utilite de chaque lib
 # include <math.h>
 # include "../libft/libft.h"
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# include <stdio.h>
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000//                  => enlever si pas couleur
@@ -37,6 +33,8 @@ enum e_keys {
 	ZOOM_OUT	= 78,
 	Z_UP		= 92,
 	Z_DOWN		= 85,
+	ROT_L		= 86,
+	ROT_R		= 88,
 	MOUSE		= 1
 };
 
@@ -48,7 +46,7 @@ typedef struct s_line {
 	int	ix;
 	int	iy;
 	int	i;
-	int	color;//                 => doit l'utiliser
+	int	color;
 }	t_line;
 
 typedef struct s_dot {
@@ -62,6 +60,7 @@ typedef struct s_matrix {
 	t_dot	**mtx;
 	int		w;
 	int		h;
+	float	angle;
 }	t_matrix;
 
 typedef struct s_img {

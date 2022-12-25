@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/22 11:05:16 by achansar         ###   ########.fr        #
+#    Updated: 2022/12/25 17:54:01 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,16 +39,16 @@ LBFT_INC = -I $(LBFT)
 LBFT_LINK = -L $(LBFT) -lft
 
 #RULES
-all: $(LBFT_LIB) $(NAME)#                                          => attention ! relink du libft
+all: $(LBFT_LIB) $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
+$(NAME): $(OBJ) 
+	@ $(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	$(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
+	@ $(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
 
 $(LBFT_LIB):
-	make -C $(LBFT)
+	@make -C $(LBFT)
 
 clean:
 	make -C $(LBFT) clean

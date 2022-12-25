@@ -6,19 +6,11 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:56:21 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/22 11:46:29 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/25 12:54:39 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
-
-static float	ft_radian(float a)
-{
-	float	f;
-
-	f = (a * M_PI) / 180;
-	return (round(f));
-}
 
 static int	scale(t_matrix *ele)
 {
@@ -54,9 +46,10 @@ int	isometric(t_matrix *matrix)
 		while (j < matrix->w)
 		{
 			matrix->mtx[i][j].x = (matrix->mtx[i][j].x - matrix->mtx[i][j].y)
-				* cos(ft_radian(-45));
+				* cos(matrix->angle);
+			// printf("angle = %f\n", matrix->angle);
 			matrix->mtx[i][j].y = (matrix->mtx[i][j].x + matrix->mtx[i][j].y)
-				* sin(ft_radian(45)) - matrix->mtx[i][j].z;
+				* sin(matrix->angle) - matrix->mtx[i][j].z;
 			j++;
 		}
 		i++;

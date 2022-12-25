@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:39:44 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/22 10:29:19 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:27:24 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	free_tab(char **tab)
 
 int	ft_error_msg(char *str)
 {
-	printf("%s\n", str);//               => remener ft_printf
+	ft_printf("%s\n", str);//               => remener ft_printf
 	return (-1);
 }

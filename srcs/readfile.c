@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/21 11:41:07 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/25 17:37:57 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 
 	w = 0;
 	fd = 0;
+	matrix->angle = 0.785398;
 	fd = open(file_path, O_RDONLY);
 	if (!fd)
 		return (ft_error_msg("ERROR : failed to open file."));
@@ -77,6 +78,6 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 	matrix->h = get_height(matrix->h, file_path);
 	if (matrix->h <= 0)
 		return (1);
-	printf("w = %d | h = %d\n", matrix->w, matrix->h);
+	ft_printf("w = %d | h = %d\n", matrix->w, matrix->h);
 	return (0);
 }

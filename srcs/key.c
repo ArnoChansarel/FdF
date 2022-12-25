@@ -6,19 +6,23 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:36:23 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/22 11:07:53 by achansar         ###   ########.fr       */
+/*   Updated: 2022/12/25 12:55:51 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-int	destroy(t_data *set)
+static int	ft_rotate(t_data *set, int key)
 {
-	free_matrix(set->matrix.mtx, set->matrix.h - 1);
-	mlx_destroy_image(set->mlx, set->img.img);
-	mlx_destroy_window(set->mlx, set->win);
-	free(set->mlx);
-	exit(0);
+	// int	i;
+
+	if (key == ROT_L)
+		set->matrix.angle -= 0.05;
+	else if (key == ROT_R)
+		set->matrix.angle += 0.05;
+	ft_bzero(set->img.addr, HEIGHT * WIDTH * sizeof(int));
+	isometric(&set->matrix);
+	drawline_all(set, &set->img, &set->matrix, set->matrix.mtx);
 	return (0);
 }
 
@@ -113,6 +117,8 @@ int	ft_keys(int key, t_data *set)
 		ft_zoom(set, key);
 	else if (key == Z_UP || key == Z_DOWN)
 		ft_zscale(set, key);
+	else if (key == ROT_L || key == ROT_R)
+		ft_rotate(set, key);
 	// else
 	// 	printf("key pressed = %d\n", key);
 	return (0);
