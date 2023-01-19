@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/19 16:23:12 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:01:35 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <mlx.h>
 # include <limits.h>
 # include <math.h>
-# include "../libft/libft.h"
+# include "../functions/libft.h"
 
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000

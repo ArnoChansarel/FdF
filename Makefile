@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2023/01/19 16:10:39 by achansar         ###   ########.fr        #
+#    Updated: 2023/01/19 18:00:59 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = fdf
 #ARGUMENTS
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -O1 -O2 -O3 
-SEG = -fsanitize=address -g
+#SEG = -fsanitize=address -g
 MLX = -lmlx -framework OpenGL -framework AppKit 
 
 #FDF FILES
@@ -33,29 +33,36 @@ C_FILES = $(addprefix $(SRC_PATH), $(SRC:=.c))
 OBJ = $(addprefix $(SRC_PATH), $(SRC:=.o))
 
 #LIBFT
-LBFT = ./libft/
-LBFT_LIB = $(addprefix $(LBFT), ft.a)
-LBFT_INC = -I $(LBFT)
-LBFT_LINK = -L $(LBFT) -lft
+LBFT_PATH = ./functions/
+LBFT = 	ft_atoi \
+		ft_isdigit \
+		ft_bzero \
+		ft_memset\
+	  	ft_split \
+		ft_strjoin \
+		ft_strlen \
+		ft_substr \
+		ft_strlcpy\
+	  	get_next_line \
+		get_next_line_utils \
+	  	ft_printf \
+		ft_printf_display
+LBFT_FILES = $(addprefix $(LBFT_PATH), $(LBFT:=.c))
+LBFT_OBJ = $(addprefix $(LBFT_PATH), $(LBFT:=.o))
 
 #RULES
-all: $(LBFT_LIB) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ) 
-	@$(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
+$(NAME): $(OBJ) $(LBFT_OBJ)
+	@ $(CC) $(FLAGS) $(OBJ) $(LBFT_OBJ) $(MLX) -o $(NAME)
 
 .c.o:
-	@$(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
-
-$(LBFT_LIB):
-	@make -C $(LBFT)
+	@ $(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@make -C $(LBFT) clean
-	@rm -f $(OBJ)
+	@rm -f $(OBJ) $(LBFT_OBJ)
 
 fclean: clean
-	@make -C $(LBFT) fclean
 	@rm -f $(NAME)
 
 re: fclean all
