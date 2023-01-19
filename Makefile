@@ -6,7 +6,7 @@
 #    By: achansar <achansar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 11:47:15 by achansar          #+#    #+#              #
-#    Updated: 2022/12/25 17:54:01 by achansar         ###   ########.fr        #
+#    Updated: 2023/01/19 16:10:39 by achansar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,21 +42,21 @@ LBFT_LINK = -L $(LBFT) -lft
 all: $(LBFT_LIB) $(NAME)
 
 $(NAME): $(OBJ) 
-	@ $(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
+	@$(CC) $(FLAGS) $(SEG) $(OBJ) $(MLX) $(LBFT_LINK) -o $(NAME)
 
 .c.o:
-	@ $(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
+	@$(CC) $(FLAGS) -c $(LBFT_INC) $< -o $@
 
 $(LBFT_LIB):
 	@make -C $(LBFT)
 
 clean:
-	make -C $(LBFT) clean
-	rm -f $(OBJ)
+	@make -C $(LBFT) clean
+	@rm -f $(OBJ)
 
 fclean: clean
-	make -C $(LBFT) fclean
-	rm -f $(NAME)
+	@make -C $(LBFT) fclean
+	@rm -f $(NAME)
 
 re: fclean all
 

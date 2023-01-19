@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/25 17:37:57 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:21:17 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 	matrix->h = get_height(matrix->h, file_path);
 	if (matrix->h <= 0)
 		return (1);
-	ft_printf("w = %d | h = %d\n", matrix->w, matrix->h);
 	return (0);
 }

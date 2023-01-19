@@ -6,19 +6,19 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:30:45 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/25 17:30:02 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:23:12 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <mlx.h>                     //=> verifier si les include sont necessaires dans chacun des fichiers (utils)
-# include <limits.h>//                        => verifier l'utilite de chaque lib
+# include <mlx.h>
+# include <limits.h>
 # include <math.h>
 # include "../libft/libft.h"
 
 # define WHITE 0xFFFFFF
-# define RED 0xFF0000//                  => enlever si pas couleur
+# define RED 0xFF0000
 # define WIDTH 1000
 # define HEIGHT 1000
 # define KEYPRESS 2
@@ -33,8 +33,6 @@ enum e_keys {
 	ZOOM_OUT	= 78,
 	Z_UP		= 92,
 	Z_DOWN		= 85,
-	ROT_L		= 86,
-	ROT_R		= 88,
 	MOUSE		= 1
 };
 
@@ -67,7 +65,7 @@ typedef struct s_img {
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		szline;//                      => connaitre l'utilite de chacun de ces elements
+	int		szline;
 	int		endian;
 }	t_img;
 
@@ -79,7 +77,7 @@ typedef struct s_data {
 }	t_data;
 
 t_dot	**get_matrix(t_dot **mtx, t_matrix matrix, char *file_path);
-int		get_dimensions(t_matrix *matrix, char *file_path);//                 => Verifier l'utilite de chaque fonction
+int		get_dimensions(t_matrix *matrix, char *file_path);
 int		isometric(t_matrix *matrix);
 int		drawline_all(t_data *set, t_img *img, t_matrix *matrix, t_dot **mtx);
 int		bresenham_init(t_img *img, t_dot a, t_dot b);

@@ -6,20 +6,11 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/25 17:37:48 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:23:22 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
-/*
-makefile relink. Demander a GPT ?
-separer les bonus
---
-ROTATION
-2e projection ?
-	=> envoyer seulement les donnees, pas les pointeurs ? 
-		pour que les valeurs d'origine soient conservees
-*/
 
 int	destroy(t_data *set)
 {

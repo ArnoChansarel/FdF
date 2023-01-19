@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:56:21 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/25 12:54:39 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:20:50 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	isometric(t_matrix *matrix)
 		{
 			matrix->mtx[i][j].x = (matrix->mtx[i][j].x - matrix->mtx[i][j].y)
 				* cos(matrix->angle);
-			// printf("angle = %f\n", matrix->angle);
 			matrix->mtx[i][j].y = (matrix->mtx[i][j].x + matrix->mtx[i][j].y)
 				* sin(matrix->angle) - matrix->mtx[i][j].z;
 			j++;
