@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2022/12/25 11:32:30 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:18:15 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char	*buffer_map(char *buff, char *file_path, int h)
 
 	line = NULL;
 	fd = open(file_path, O_RDONLY);
+	if (!fd)
+		return (line);
 	i = 0;
 	while (i < h)
 	{
@@ -58,6 +60,8 @@ static t_dot	**create_matrix(t_dot **mtx, t_matrix matrix,
 		if (!mtx[i])
 			return (free_matrix(mtx, i));
 		line = ft_split(map[i], ' ');
+		if (!line)
+			return (free_matrix(mtx, i));
 		while (j < matrix.w)
 		{
 			mtx[i][j].x = j;
@@ -79,11 +83,14 @@ t_dot	**get_matrix(t_dot **mtx, t_matrix matrix, char *file_path)
 	char	**line;
 
 	line = NULL;
+	mtx = NULL;
 	buff = malloc(sizeof(char) * 1);
 	if (!buff)
 		return (0);
 	buff[0] = '\0';
 	buff = buffer_map(buff, file_path, matrix.h);
+	if (!buff)
+		return (mtx);
 	map = ft_split(buff, '\n');
 	free(buff);
 	mtx = malloc(sizeof(t_dot *) * matrix.h);
