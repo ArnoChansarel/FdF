@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:34:01 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/19 16:23:22 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:47:09 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	destroy(t_data *set)
 	mlx_destroy_window(set->mlx, set->win);
 	free(set->mlx);
 	exit(0);
-	return (0);
 }
 
 static int	open_window(t_data *set)

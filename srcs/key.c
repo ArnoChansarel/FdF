@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:36:23 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/19 16:22:01 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:48:53 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	ft_arrows(t_data *set, int key)
 		}
 		i++;
 	}
-	ft_bzero(set->img.addr, HEIGHT * WIDTH * sizeof(int));
 	drawline_all(set, &set->img, &set->matrix, set->matrix.mtx);
 	return (0);
 }
@@ -88,7 +87,6 @@ static int	ft_zscale(t_data *set, int key)
 		}
 		i++;
 	}
-	ft_bzero(set->img.addr, HEIGHT * WIDTH * sizeof(int));
 	drawline_all(set, &set->img, &set->matrix, set->matrix.mtx);
 	return (0);
 }

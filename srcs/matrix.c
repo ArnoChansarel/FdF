@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:18:15 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:51:16 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ static char	*buffer_map(char *buff, char *file_path, int h)
 
 	line = NULL;
 	fd = open(file_path, O_RDONLY);
-	if (!fd)
+	if (fd < 0)
 		return (line);
 	i = 0;
 	while (i < h)
 	{
 		line = get_next_line(fd);
+		if (!line)
+			return (line);
 		buff = ft_strjoin_gnl(buff, line);
 		free(line);
 		i++;
@@ -93,6 +95,8 @@ t_dot	**get_matrix(t_dot **mtx, t_matrix matrix, char *file_path)
 		return (mtx);
 	map = ft_split(buff, '\n');
 	free(buff);
+	if (!map)
+		return (mtx);
 	mtx = malloc(sizeof(t_dot *) * matrix.h);
 	if (!mtx)
 		return (mtx);

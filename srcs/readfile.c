@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/20 17:13:53 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:45:16 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	get_height(int h, char *file_path)
 
 	h = 0;
 	fd = open(file_path, O_RDONLY);
-	if (!fd)
+	if (fd < 0)
 		return (ft_error_msg("ERROR : Wrong map dimensions."));
 	line = get_next_line(fd);
 	while (line)
@@ -29,7 +29,6 @@ static int	get_height(int h, char *file_path)
 		h += 1;
 	}
 	close(fd);
-	free(line);
 	return (h);
 }
 
@@ -42,6 +41,8 @@ static int	get_width(int w, int fd)
 	while (line)
 	{
 		tabline = ft_split(line, ' ');
+		if (!tabline)
+			return (ft_error_msg("ERROR : Split failed."));
 		if (!w)
 			w = free_tab(tabline);
 		else
@@ -56,7 +57,6 @@ static int	get_width(int w, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	close(fd);
 	return (w);
 }
@@ -70,7 +70,7 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 	fd = 0;
 	matrix->angle = 0.785398;
 	fd = open(file_path, O_RDONLY);
-	if (!fd)
+	if (fd < 0)
 		return (ft_error_msg("ERROR : failed to open file."));
 	matrix->w = get_width(w, fd);
 	close(fd);
