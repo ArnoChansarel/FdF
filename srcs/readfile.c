@@ -6,18 +6,18 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 11:16:54 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/20 19:45:16 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/21 11:31:21 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FdF.h"
 
-static int	get_height(int h, char *file_path)
+static int	get_height(int *h, char *file_path)
 {
 	int		fd;
 	char	*line;
 
-	h = 0;
+	*h = 0;
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 		return (ft_error_msg("ERROR : Wrong map dimensions."));
@@ -26,10 +26,10 @@ static int	get_height(int h, char *file_path)
 	{
 		free(line);
 		line = get_next_line(fd);
-		h += 1;
+		*h += 1;
 	}
 	close(fd);
-	return (h);
+	return (0);
 }
 
 static int	get_width(int w, int fd)
@@ -76,7 +76,7 @@ int	get_dimensions(t_matrix *matrix, char *file_path)
 	close(fd);
 	if (matrix->w <= 0)
 		return (1);
-	matrix->h = get_height(matrix->h, file_path);
+	get_height(&matrix->h, file_path);
 	if (matrix->h <= 0)
 		return (1);
 	return (0);
