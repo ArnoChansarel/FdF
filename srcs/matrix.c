@@ -6,7 +6,7 @@
 /*   By: achansar <achansar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 16:01:01 by achansar          #+#    #+#             */
-/*   Updated: 2023/01/20 19:51:16 by achansar         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:11:12 by achansar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_dot	**free_matrix(t_dot **matrix, int i)
 {
-	while (i != 0)
+	while (i >= 0)
 	{
 		free(matrix[i]);
 		i--;
