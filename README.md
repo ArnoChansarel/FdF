@@ -5,7 +5,7 @@ Fil de fer
 
 ## Principe
 
-Le programme fdf doit pouvoir générer graphiquement une projection isométrique d'une terrain en relief en reliant des points le composant. Pour cela l'utilisateur doit entrer une carte.fdf formatée comme selon :
+Le programme fdf doit pouvoir générer graphiquement une projection isométrique d'une terrain en relief en reliant des points le composant. Pour cela l'utilisateur doit entrer une carte.fdf formatée de la manière suivante :
 <img src="docs/map.png" width="100%"/>
 > Où les valeurs données correspondent à l'altitude (axe z).
 
@@ -22,13 +22,12 @@ $> ./fdf test_maps/france.fdf
 ## Difficultés rencontrées
 
 :construction_worker_man: En travaux :construction_worker_woman:
-utilisation de la minilibX
 
 ## Documentation utilisée
 
 Articles
 - [Start minilibX with Aurelien Brabant](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx)
-
+- [42 docs](https://harm-smits.github.io/42docs/libs/minilibx)
 Videos
 - [Une heure de bresenham pour bien comprendre](https://www.youtube.com/watch?v=nQbnYl7xgb8)
 
