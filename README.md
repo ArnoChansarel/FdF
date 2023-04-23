@@ -28,6 +28,7 @@ $> ./fdf test_maps/france.fdf
 Articles
 - [Start minilibX with Aurelien Brabant](https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx)
 - [42 docs](https://harm-smits.github.io/42docs/libs/minilibx)
+
 Videos
 - [Une heure de bresenham pour bien comprendre](https://www.youtube.com/watch?v=nQbnYl7xgb8)
 
